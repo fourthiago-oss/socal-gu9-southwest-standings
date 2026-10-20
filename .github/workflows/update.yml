@@ -1,0 +1,69 @@
+name: Update standings from GotSport
+on:
+  schedule:
+    # 5 PM Pacific is 00:00 UTC next day in PDT, 01:00 UTC next day in PST.
+    # Both are scheduled; local-time guard below selects only the correct one.
+    - cron: '0 0,1 * * 0,1'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify local Pacific time for scheduled run
+        id: pacific
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then echo 'run=true' >> "$GITHUB_OUTPUT"; exit 0; fi
+          DAY=$(TZ=America/Los_Angeles date +%u)
+          HOUR=$(TZ=America/Los_Angeles date +%H)
+          if { [ "$DAY" = 6 ] || [ "$DAY" = 7 ]; } && [ "$HOUR" = 17 ]; then echo 'run=true' >> "$GITHUB_OUTPUT"; else echo 'run=false' >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-python@v5
+        if: steps.pacific.outputs.run == 'true'
+        with:
+          python-version: '3.12'
+      - name: Install scraper dependencies
+        if: steps.pacific.outputs.run == 'true'
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Attempt GotSport update
+        if: steps.pacific.outputs.run == 'true'
+        run: python scripts/sync.py
+      - name: Commit validated results and sync status
+        if: steps.pacific.outputs.run == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/matches.json data/sync-status.json
+          if ! git diff --cached --quiet; then git commit -m 'Update SOCAL results and sync status'; git push; fi
+
+name: Publish standings website
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - id: deployment
+        uses: actions/deploy-pages@v4
