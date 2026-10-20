@@ -1,0 +1,31 @@
+{
+  "source": "User-provided GotSport results through 2026-10-17",
+  "updatedAt": "2026-10-17T23:00:00-07:00",
+  "matches": [
+    [7131,"2026-09-12","merc","beachlb",3,0],
+    [7130,"2026-09-12","slammers","beachsb",0,6],
+    [7132,"2026-09-12","cda","lime",0,8],
+    [7133,"2026-09-19","blue","beachsb",2,1],
+    [7135,"2026-09-19","merc","cda",2,2],
+    [7134,"2026-09-19","lime","slammers",8,0],
+    [7136,"2026-09-20","beachlb","blue",0,3],
+    [7138,"2026-09-20","slammers","merc",0,0],
+    [7137,"2026-09-20","beachsb","lime",0,5],
+    [7139,"2026-09-27","blue","lime",0,4],
+    [7141,"2026-09-27","merc","beachsb",2,3],
+    [7140,"2026-09-27","cda","beachlb",0,3],
+    [7145,"2026-10-10","merc","blue",2,3],
+    [7147,"2026-10-10","beachsb","beachlb",1,0],
+    [7146,"2026-10-10","slammers","cda",2,1],
+    [7150,"2026-10-11","beachlb","lime",0,6],
+    [7152,"2026-10-17","beachlb","merc",0,4],
+    [7151,"2026-10-17","beachsb","slammers",1,1]
+  ],
+  "pending": [
+    [7143,"2026-10-03","lime","merc","Canceled"],
+    [7142,"2026-10-03","blue","cda","Unscored"],
+    [7148,"2026-10-11","blue","slammers","Postponed"],
+    [7149,"2026-10-11","cda","beachsb","Postponed"],
+    [7153,"2026-10-17","lime","cda","Postponed"]
+  ]
+}
