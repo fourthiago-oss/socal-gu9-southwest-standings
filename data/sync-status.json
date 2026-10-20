@@ -1,1 +1,5 @@
-{"status":"not-run","checkedAt":null,"message":"Awaiting first scheduled workflow"}
+{
+  "checkedAt": "2026-10-20T14:49:01-07:00",
+  "status": "blocked",
+  "message": "Only 0 validated matches; page may be blocked or markup changed"
+}
