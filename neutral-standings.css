@@ -1,0 +1,17 @@
+/* Neutral public league standings: no team is specially highlighted. */
+table tbody tr,
+table tbody tr:hover,
+table tbody tr[class],
+table tbody tr[style] {
+  background: #fff !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+table tbody tr td {
+  background: transparent !important;
+  border-left-color: transparent !important;
+}
+table tbody tr td:nth-child(2),
+table tbody tr td:nth-child(2) * {
+  color: #0b2339 !important;
+}
