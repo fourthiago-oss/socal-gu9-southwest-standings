@@ -1,8 +1,256 @@
+
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#081729"/><meta name="description" content="Unofficial SOCAL GU9 Flight 1 Southwest league standings, ranked by points per game."/><title>SOCAL GU9 | Flight 1 Southwest Standings</title><link rel="stylesheet" href="styles.css"/></head>
-<body><header class="top"><div class="wrap nav"><a class="brand" href="#"><span class="mark">S<span>⚽</span></span><span>SOCAL <strong>STANDINGS</strong><small>Community tracker · Unofficial</small></span></a><a class="navlink" href="https://system.gotsport.com/org_event/events/48745/schedules?date=All&amp;group=528635" target="_blank" rel="noopener noreferrer">Official GotSport <span>↗</span></a></div></header>
-<main class="wrap"><section class="hero"><div class="eyebrow">2026–27 FALL LEAGUE <span class="dot"></span> 7V7</div><h1>GU9 <em>Flight 1 Southwest</em></h1><p>Every result. One clear table. Standings ranked by points per game.</p><div class="hero-meta"><span class="pill"><span class="green-dot"></span><span id="status">Loading verified results…</span></span><span id="updated">—</span></div></section>
-<section class="stats"><div class="stat"><span>TEAMS</span><strong id="teams-count">7</strong></div><div class="stat"><span>COMPLETED MATCHES</span><strong id="matches-count">—</strong></div><div class="stat"><span>LEAGUE LEADER</span><strong id="leader">—</strong></div><div class="stat"><span>NEXT AUTO CHECK</span><strong id="next-check">—</strong></div></section>
-<section class="panel"><div class="panel-head"><div><span class="eyebrow dark">THE TABLE</span><h2>League standings</h2><p>Unofficial · PPG first, then goal difference and goals scored</p></div><div class="controls"><label class="search"><span>⌕</span><input id="filter" placeholder="Find a team" aria-label="Find a team"/></label><button class="outline" id="refresh">↻ Refresh</button></div></div><div class="table-scroll"><table><thead><tr><th>#</th><th class="teamcol">TEAM</th><th>MP</th><th>W</th><th>L</th><th>D</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th><th class="ppg">PPG</th></tr></thead><tbody id="standings"></tbody></table></div><div class="panel-foot"><span><i class="key"></i> So Cal Blues GU09 Blue highlighted</span><span>3 points per win · 1 per draw</span></div></section>
-<section class="lower"><div class="panel results"><div class="panel-head"><div><span class="eyebrow dark">MATCH CENTER</span><h2>Recent results</h2><p>Scores from the latest verified dataset</p></div><select id="team-select" aria-label="Filter match results"><option value="">All teams</option></select></div><div id="results-list"></div></div><aside class="side"><div class="panel sidebox"><span class="eyebrow dark">DATA SOURCE</span><h3>How updates work</h3><p>We check the public GotSport schedule on <strong>Saturday and Sunday at 5 PM Pacific</strong>.</p><p>Only completed matches count. Canceled, postponed and unscored fixtures are excluded.</p><p>If GotSport blocks access or the response cannot be verified, the last confirmed table remains published.</p><div class="sync" id="sync-details">Last sync status: —</div></div><div class="panel sidebox"><span class="eyebrow dark">COMMUNITY BACKUP</span><h3>Manual results import</h3><p>Have updated match results? Import a GotSport-style text export or the tracker JSON. Review the standings locally, then download a JSON file to submit for publication.</p><button class="primary" id="import-toggle">Import results</button><div id="import-area" hidden><textarea id="paste" rows="7" placeholder="Paste GotSport match lines, e.g.&#10;7154 | 2026-10-24 | Beach Futbol Club GU09 SB W. Lopez | 2 - 1 | So Cal Blues GU09 Blue&#10;&#10;Or upload tracker JSON below."></textarea><input type="file" id="file-input" accept=".json,.txt,.csv,application/json,text/plain,text/csv"/><div class="btnrow"><button class="outline" id="preview-import">Preview locally</button><button class="outline" id="export-json">Download JSON</button></div><p class="notice" id="import-message" aria-live="polite"></p><p class="hint">Imports affect only your browser until the exported JSON is committed to the repository. No public submissions or server storage.</p></div></div></aside></section>
-<footer>Unofficial community project. Not affiliated with SOCAL Soccer League or GotSport. <a href="https://system.gotsport.com/org_event/events/48745/schedules?date=All&amp;group=528635" target="_blank" rel="noopener noreferrer">Official schedule ↗</a></footer></main><script src="app.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#081729"/>
+  <meta name="description" content="Unofficial SOCAL GU9 Flight 1 Southwest league standings, ranked by points per game."/>
+  <title>SOCAL GU9 | Flight 1 Southwest Standings</title>
+
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="neutral-standings.css"/>
+</head>
+
+<body>
+  <header class="top">
+    <div class="wrap nav">
+      <a class="brand" href="#">
+        <span class="mark">S<span>⚽</span></span>
+        <span>
+          SOCAL <strong>STANDINGS</strong>
+          <small>Community tracker · Unofficial</small>
+        </span>
+      </a>
+
+      <a
+        class="navlink"
+        href="https://system.gotsport.com/org_event/events/48745/schedules?date=All&amp;group=528635"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Official GotSport <span>↗</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">
+        2026–27 FALL LEAGUE
+        <span class="dot"></span>
+        7V7
+      </div>
+
+      <h1>GU9 <em>Flight 1 Southwest</em></h1>
+
+      <p>
+        Every result. One clear table.
+        Standings ranked by points per game.
+      </p>
+
+      <div class="hero-meta">
+        <span class="pill">
+          <span class="green-dot"></span>
+          <span id="status">Loading verified results…</span>
+        </span>
+        <span id="updated">—</span>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <span>TEAMS</span>
+        <strong id="teams-count">7</strong>
+      </div>
+
+      <div class="stat">
+        <span>COMPLETED MATCHES</span>
+        <strong id="matches-count">—</strong>
+      </div>
+
+      <div class="stat">
+        <span>LEAGUE LEADER</span>
+        <strong id="leader">—</strong>
+      </div>
+
+      <div class="stat">
+        <span>NEXT AUTO CHECK</span>
+        <strong id="next-check">—</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow dark">THE TABLE</span>
+          <h2>League standings</h2>
+          <p>
+            Unofficial · PPG first, then goal difference
+            and goals scored
+          </p>
+        </div>
+
+        <div class="controls">
+          <label class="search">
+            <span>⌕</span>
+            <input
+              id="filter"
+              placeholder="Find a team"
+              aria-label="Find a team"
+            />
+          </label>
+
+          <button class="outline" id="refresh">
+            ↻ Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="teamcol">TEAM</th>
+              <th>MP</th>
+              <th>W</th>
+              <th>L</th>
+              <th>D</th>
+              <th>GF</th>
+              <th>GA</th>
+              <th>GD</th>
+              <th>PTS</th>
+              <th class="ppg">PPG</th>
+            </tr>
+          </thead>
+
+          <tbody id="standings"></tbody>
+        </table>
+      </div>
+
+      <div class="panel-foot">
+        <span>Unofficial community standings</span>
+        <span>3 points per win · 1 per draw</span>
+      </div>
+    </section>
+
+    <section class="lower">
+      <div class="panel results">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow dark">MATCH CENTER</span>
+            <h2>Recent results</h2>
+            <p>Scores from the latest verified dataset</p>
+          </div>
+
+          <select
+            id="team-select"
+            aria-label="Filter match results"
+          >
+            <option value="">All teams</option>
+          </select>
+        </div>
+
+        <div id="results-list"></div>
+      </div>
+
+      <aside class="side">
+        <div class="panel sidebox">
+          <span class="eyebrow dark">DATA SOURCE</span>
+          <h3>How updates work</h3>
+
+          <p>
+            Results are sourced from the official
+            GotSport schedule and published after review.
+          </p>
+
+          <p>
+            Only completed matches count.
+            Canceled, postponed and unscored fixtures
+            are excluded.
+          </p>
+
+          <p>
+            If GotSport blocks automated access,
+            the last confirmed table remains published.
+          </p>
+
+          <div class="sync" id="sync-details">
+            Last sync status: —
+          </div>
+        </div>
+
+        <div class="panel sidebox">
+          <span class="eyebrow dark">COMMUNITY BACKUP</span>
+          <h3>Manual results import</h3>
+
+          <p>
+            Have updated match results?
+            Import a GotSport-style text export
+            or the tracker JSON.
+            Review the standings locally,
+            then download a JSON file
+            to submit for publication.
+          </p>
+
+          <button class="primary" id="import-toggle">
+            Import results
+          </button>
+
+          <div id="import-area" hidden>
+            <textarea
+              id="paste"
+              rows="7"
+              placeholder="Paste GotSport match lines, e.g.&#10;7154 | 2026-10-24 | Beach Futbol Club GU09 SB W. Lopez | 2 - 1 | So Cal Blues GU09 Blue&#10;&#10;Or upload tracker JSON below."
+            ></textarea>
+
+            <input
+              type="file"
+              id="file-input"
+              accept=".json,.txt,.csv,application/json,text/plain,text/csv"
+            />
+
+            <div class="btnrow">
+              <button class="outline" id="preview-import">
+                Preview locally
+              </button>
+
+              <button class="outline" id="export-json">
+                Download JSON
+              </button>
+            </div>
+
+            <p
+              class="notice"
+              id="import-message"
+              aria-live="polite"
+            ></p>
+
+            <p class="hint">
+              Imports affect only your browser until
+              the exported JSON is committed to the repository.
+              No public submissions or server storage.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      Unofficial community project.
+      Not affiliated with SOCAL Soccer League or GotSport.
+
+      <a
+        href="https://system.gotsport.com/org_event/events/48745/schedules?date=All&amp;group=528635"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Official schedule ↗
+      </a>
+    </footer>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
