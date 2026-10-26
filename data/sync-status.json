@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-24T17:21:53-07:00",
+  "checkedAt": "2026-10-25T17:34:21-07:00",
   "status": "blocked",
-  "message": "Page.content: Unable to retrieve content because the page is navigating and changing the content."
+  "message": "Only 0 validated matches; page may be blocked or markup changed"
 }
