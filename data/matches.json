@@ -1,6 +1,6 @@
 {
   "source": "GotSport public schedule (admin-entered, reviewed)",
-  "updatedAt": "2026-10-26T01:09:47.282Z",
+  "updatedAt": "2026-10-26T15:23:19.968Z",
   "matches": [
     [
       7130,
@@ -177,6 +177,14 @@
       "slammers",
       3,
       0
+    ],
+    [
+      7149,
+      "2026-10-25",
+      "cda",
+      "beachsb",
+      3,
+      4
     ]
   ],
   "pending": [
@@ -199,13 +207,6 @@
       "2026-10-11",
       "blue",
       "slammers",
-      "Postponed"
-    ],
-    [
-      7149,
-      "2026-10-11",
-      "cda",
-      "beachsb",
       "Postponed"
     ],
     [
