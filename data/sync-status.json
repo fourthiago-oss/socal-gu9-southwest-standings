@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25T17:34:21-07:00",
+  "checkedAt": "2026-10-31T17:42:01-07:00",
   "status": "blocked",
-  "message": "Only 0 validated matches; page may be blocked or markup changed"
+  "message": "Page.title: Execution context was destroyed, most likely because of a navigation"
 }
