@@ -1,6 +1,6 @@
 {
   "source": "GotSport public schedule (admin-entered, reviewed)",
-  "updatedAt": "2026-10-26T15:23:19.968Z",
+  "updatedAt": "2026-11-01T20:34:53.382Z",
   "matches": [
     [
       7130,
@@ -185,6 +185,30 @@
       "beachsb",
       3,
       4
+    ],
+    [
+      7157,
+      "2026-11-01",
+      "blue",
+      "beachlb",
+      4,
+      4
+    ],
+    [
+      7158,
+      "2026-11-01",
+      "lime",
+      "beachsb",
+      6,
+      2
+    ],
+    [
+      7159,
+      "2026-11-01",
+      "merc",
+      "slammers",
+      5,
+      1
     ]
   ],
   "pending": [
