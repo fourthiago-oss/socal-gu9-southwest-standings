@@ -1,6 +1,6 @@
 {
   "source": "GotSport public schedule (admin-entered, reviewed)",
-  "updatedAt": "2026-11-01T20:34:53.382Z",
+  "updatedAt": "2026-11-09T05:07:11.545Z",
   "matches": [
     [
       7130,
@@ -208,6 +208,54 @@
       "merc",
       "slammers",
       5,
+      1
+    ],
+    [
+      7160,
+      "2026-11-07",
+      "lime",
+      "blue",
+      9,
+      1
+    ],
+    [
+      7161,
+      "2026-11-07",
+      "beachlb",
+      "cda",
+      4,
+      2
+    ],
+    [
+      7162,
+      "2026-11-07",
+      "beachsb",
+      "merc",
+      2,
+      5
+    ],
+    [
+      7166,
+      "2026-11-08",
+      "blue",
+      "merc",
+      4,
+      5
+    ],
+    [
+      7167,
+      "2026-11-08",
+      "cda",
+      "slammers",
+      3,
+      0
+    ],
+    [
+      7168,
+      "2026-11-08",
+      "beachlb",
+      "beachsb",
+      6,
       1
     ]
   ],
